@@ -65,9 +65,9 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew assembleRelease --no-daemon -PversionName="${{ steps.ver.outputs.name }}" -PversionCode="${{ steps.ver.outputs.code }}"
 
-      - name: Rename APK to 提词器.apk
+      - name: Rename APK to ASCII name (avoid non-ASCII path issues)
         run: |
-          mv app/build/outputs/apk/release/app-release.apk "app/build/outputs/apk/release/提词器.apk"
+          mv app/build/outputs/apk/release/app-release.apk "app/build/outputs/apk/release/teleprompter.apk"
           ls -l app/build/outputs/apk/release/
 
       - name: Upload Release APK
@@ -82,5 +82,7 @@ jobs:
         with:
           tag_name: v${{ steps.ver.outputs.name }}
           name: Teleprompter ${{ steps.ver.outputs.name }}
-          files: app/build/outputs/apk/release/*.apk
+          files: |
+            path: app/build/outputs/apk/release/teleprompter.apk
+            name: 提词器.apk
           generate_release_notes: true
