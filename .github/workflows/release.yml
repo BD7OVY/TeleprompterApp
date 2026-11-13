@@ -65,6 +65,11 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew assembleRelease --no-daemon -PversionName="${{ steps.ver.outputs.name }}" -PversionCode="${{ steps.ver.outputs.code }}"
 
+      - name: Rename APK to 提词器.apk
+        run: |
+          mv app/build/outputs/apk/release/app-release.apk "app/build/outputs/apk/release/提词器.apk"
+          ls -l app/build/outputs/apk/release/
+
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
         with:

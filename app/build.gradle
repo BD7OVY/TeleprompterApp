@@ -45,15 +45,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
-    // Release 产物改名：app-release.apk -> 提词器.apk
-    applicationVariants.all { variant ->
-        if (variant.buildType.name == 'release') {
-            variant.outputs.all {
-                outputFileName = "提词器.apk"
-            }
-        }
-    }
 }
 
 dependencies {
