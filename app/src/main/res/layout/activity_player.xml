@@ -77,22 +77,34 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <Button android:id="@+id/btnPlay" android:text="播放" />
-            <Button android:id="@+id/btnRestart" android:text="重播" />
-            <Button android:id="@+id/btnSpeedDown" android:text="-" />
+            <Button android:id="@+id/btnPlay" android:text="播放"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnRestart" android:text="重播"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnSpeedDown" android:text="-"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tvSpeed"
                 android:text="速度 60"
                 android:textColor="#FFFFFF"
                 android:padding="8dp"
-                android:layout_gravity="center" />
-            <Button android:id="@+id/btnSpeedUp" android:text="+" />
-            <Button android:id="@+id/btnFontDown" android:text="A-" />
-            <Button android:id="@+id/btnFontUp" android:text="A+" />
-            <Button android:id="@+id/btnColor" android:text="颜色" />
-            <Button android:id="@+id/btnEyeCare" android:text="护眼" />
-            <Button android:id="@+id/btnMirror" android:text="镜像" />
-            <Button android:id="@+id/btnFloating" android:text="悬浮窗" />
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnSpeedUp" android:text="+"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnFontDown" android:text="A-"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnFontUp" android:text="A+"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnColor" android:text="颜色"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnEyeCare" android:text="护眼"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnMirror" android:text="镜像"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnFloating" android:text="悬浮窗"
+                android:layout_width="wrap_content" android:layout_height="wrap_content" />
         </LinearLayout>
     </HorizontalScrollView>
 </FrameLayout>
