@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
@@ -136,7 +137,7 @@ class PlayerActivity : AppCompatActivity() {
                 return true
             }
         })
-        scaleDetector = ScaleGestureDetector(this, object : ScaleGestureDetector.SimpleOnGestureListener() {
+        scaleDetector = ScaleGestureDetector(this, object : ScaleGestureDetector.SimpleOnScaleGestureListener() {
             override fun onScale(detector: ScaleGestureDetector): Boolean {
                 changeFont(detector.scaleFactor - 1f)
                 return true
@@ -151,14 +152,14 @@ class PlayerActivity : AppCompatActivity() {
 
     private fun togglePlay() {
         scroller.toggle()
-        btnPlay.text = if (scroller.isPlaying()) "暂停" else "播放"
+        btnPlay.text = if (scroller.isPlaying) "暂停" else "播放"
     }
 
     private fun changeSpeed(delta: Float) {
         speed = (speed + delta).coerceIn(10f, 400f)
         prefs.defaultSpeed = speed
         updateSpeedUi()
-        if (scroller.isPlaying()) { scroller.pause(); scroller.play() }
+        if (scroller.isPlaying) { scroller.pause(); scroller.play() }
     }
 
     private fun updateSpeedUi() {
