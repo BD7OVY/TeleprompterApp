@@ -1,6 +1,8 @@
 package com.example.teleprompter
 
 import android.app.AlertDialog
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -52,6 +55,26 @@ class ScriptListActivity : AppCompatActivity() {
                 .show()
             true
         }
+
+        checkCrashLog()
+    }
+
+    /** 若上次发生崩溃，重开 App 时弹窗展示堆栈，可一键复制 */
+    private fun checkCrashLog() {
+        val file = File(filesDir, "crash.txt")
+        if (!file.exists()) return
+        val text = file.readText()
+        file.delete()
+        AlertDialog.Builder(this)
+            .setTitle("上次崩溃记录（可复制发给我排查）")
+            .setMessage(text)
+            .setPositiveButton("复制") { _, _ ->
+                val cm = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                cm.setPrimaryClip(ClipData.newPlainText("crash", text))
+                Toast.makeText(this, "已复制到剪贴板", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("关闭", null)
+            .show()
     }
 
     override fun onResume() {
