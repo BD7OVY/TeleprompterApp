@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="44dp">
 
         <TextView
             android:id="@+id/floatingText"
@@ -28,9 +28,10 @@
             android:text="" />
     </ScrollView>
 
+    <!-- 底部控制栏：4 个按钮等分宽度，避免窄屏挤压/裁切 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="44dp"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:background="#80000000">
@@ -38,22 +39,38 @@
         <Button
             android:id="@+id/btnPlay"
             android:text="暂停"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp" />
         <Button
             android:id="@+id/btnSpeedDown"
             android:text="-"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp" />
         <Button
             android:id="@+id/btnSpeedUp"
             android:text="+"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp" />
         <Button
             android:id="@+id/btnClose"
             android:text="关闭"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textSize="12sp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp" />
     </LinearLayout>
 </FrameLayout>

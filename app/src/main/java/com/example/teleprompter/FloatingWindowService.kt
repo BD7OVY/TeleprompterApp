@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
@@ -38,7 +39,12 @@ class FloatingWindowService : Service() {
     override fun onCreate() {
         super.onCreate()
         createChannel()
-        startForeground(1, buildNotification())
+        // Android 14(API 34)+ 前台服务必须带 type，否则抛 MissingForegroundServiceTypeException
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(1, buildNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+        } else {
+            startForeground(1, buildNotification())
+        }
         windowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
     }
 
@@ -71,8 +77,9 @@ class FloatingWindowService : Service() {
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
             PixelFormat.TRANSLUCENT
         )
+        // 初始水平居中，不再贴左边缘（vivo 等机型的侧边手势区会遮挡贴边窗口）
         params.gravity = Gravity.TOP or Gravity.START
-        params.x = 0
+        params.x = (dm.widthPixels - w) / 2
         params.y = (80 * dm.density).toInt()
 
         floatingView!!.findViewById<View>(R.id.floatingHandle).setOnTouchListener(DragListener(params))
